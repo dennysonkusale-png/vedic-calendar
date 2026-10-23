@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | **Live website** | https://dennysonkusale-png.github.io/vedic-calendar/ |
-| **Android app** | [Download the APK](https://github.com/dennysonkusale-png/vedic-calendar/releases/latest) (161 KB · Android 5.0+) |
+| **Android app** | [Download the APK](https://github.com/dennysonkusale-png/vedic-calendar/releases/latest) (136 KB · Android 5.0+) |
 
 ---
 
@@ -18,6 +18,10 @@
 - **Learn** — a gentle introduction to Vedic time (tithis, nakshatras, why the extra month exists, ayanamsa) and a small glossary.
 - **My calendar** — choose your region and tradition, and save favourites privately in your browser.
 - **Four languages** — English, हिंदी (Hindi), मराठी (Marathi), संस्कृतम् (Sanskrit).
+
+## Design
+
+The interface uses a cool neutral canvas with flat white surfaces, hairline borders and a single vermilion accent. Headings are set in Bricolage Grotesque, body text in Plus Jakarta Sans, and Devanagari in Mukta. Light and dark themes are both supported, and the theme choice is remembered.
 
 ## Run it
 
