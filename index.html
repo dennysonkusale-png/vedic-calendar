@@ -95,7 +95,7 @@ section{padding:64px 0; scroll-margin-top:88px}
 .nav{display:flex; gap:2px; align-items:center}
 .nav a{font-size:14px; font-weight:500; color:var(--ink-soft); text-decoration:none; padding:8px 13px; border-radius:9px; transition:background .16s,color .16s; white-space:nowrap}
 .nav a:hover{background:var(--surface); color:var(--ink); box-shadow:var(--sh-1)}
-.tb-right{display:flex; align-items:center; gap:9px; flex:none}
+.tb-right{display:flex; align-items:center; gap:9px; flex:none; flex-wrap:wrap; justify-content:flex-end; max-width:100%; min-width:0}
 .langbar{display:flex; gap:2px; background:var(--surface2); border:1px solid var(--line); border-radius:11px; padding:3px}
 .langbar button{border:0; background:none; font-family:var(--body); font-size:12.5px; font-weight:600; color:var(--muted);
   padding:6px 10px; border-radius:8px; cursor:pointer; white-space:nowrap; transition:.16s}
@@ -104,6 +104,67 @@ section{padding:64px 0; scroll-margin-top:88px}
 .iconbtn{border:1px solid var(--line); background:var(--surface); color:var(--ink-soft); width:38px;height:38px;
   border-radius:11px; cursor:pointer; display:grid; place-items:center; transition:.16s; flex:none}
 .iconbtn:hover{color:var(--ink); border-color:var(--muted)}
+.locwrap{position:relative}
+.locbtn{display:inline-flex; align-items:center; gap:7px; border:1px solid var(--line); background:var(--surface);
+  color:var(--ink-soft); font-family:var(--body); font-size:13px; font-weight:600; padding:8px 12px; border-radius:11px;
+  cursor:pointer; transition:.16s; max-width:180px; white-space:nowrap}
+.locbtn:hover{color:var(--ink); border-color:var(--muted)}
+.locbtn svg{flex:none; color:var(--saffron)}
+.locbtn span{overflow:hidden; text-overflow:ellipsis}
+.locpanel{position:fixed; top:0; right:0; width:min(330px, calc(100vw - 28px));
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--r-sm); box-shadow:var(--sh-3);
+  padding:14px; z-index:95; display:none}
+.locpanel.open{display:block}
+.locpanel .lp-head{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:9px}
+.locpanel input{width:100%; font-family:var(--body); font-size:13.5px; padding:9px 11px; border-radius:9px;
+  border:1px solid var(--line); background:var(--surface); color:var(--ink); outline:none; margin-bottom:10px}
+.locpanel input::placeholder{color:var(--muted)}
+.locpanel input:focus{border-color:var(--saffron); box-shadow:0 0 0 3px var(--saffron-t)}
+.loclist{max-height:216px; overflow-y:auto; margin:0 -4px 2px; padding:0 4px}
+.locitem{display:block; width:100%; text-align:left; border:0; background:none; font-family:var(--body);
+  font-size:13.5px; color:var(--ink-soft); padding:8px 10px; border-radius:8px; cursor:pointer; transition:.14s}
+.locitem:hover{background:var(--surface2); color:var(--ink)}
+.locitem.sel{background:var(--saffron-t); color:var(--saffron-d); font-weight:700}
+.locitem small{color:var(--muted); font-size:11.5px; margin-left:6px}
+.lpgps{display:flex; align-items:center; gap:8px; width:100%; border:1px solid var(--line); background:var(--surface2);
+  color:var(--ink); font-family:var(--body); font-size:13px; font-weight:600; padding:9px 11px; border-radius:9px;
+  cursor:pointer; margin-bottom:11px; transition:.16s}
+.lpgps:hover{border-color:var(--saffron); color:var(--saffron-d)}
+.lpgps svg{flex:none; color:var(--saffron)}
+.lpdiv{display:flex; align-items:center; gap:8px; margin:12px 0 10px; color:var(--muted); font-size:10.5px;
+  letter-spacing:.1em; text-transform:uppercase; font-weight:700}
+.lpdiv::before,.lpdiv::after{content:""; height:1px; background:var(--line); flex:1}
+.lpcoords{display:flex; gap:8px}
+.lpcoords input{margin-bottom:0}
+.lpapply{width:100%; margin-top:10px; border:0; background:var(--ink); color:var(--bg); font-family:var(--body);
+  font-size:13px; font-weight:700; padding:9px 11px; border-radius:9px; cursor:pointer; transition:.16s}
+.lpapply:hover{opacity:.88}
+.lperr{font-size:12px; color:var(--rose); margin-top:8px; display:none}
+.lperr.show{display:block}
+@media(max-width:1080px){ .locbtn{max-width:132px; padding:7px 10px; font-size:12.5px} }
+@media(max-width:700px){
+  .locpanel{position:fixed; left:12px; right:12px; bottom:12px; top:auto; width:auto; max-height:72vh; overflow-y:auto}
+}
+.upcgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:26px}
+@media(max-width:430px){
+  .cal-cards, .fest-grid, .learn-grid, .gloss, .panch-grid, .yeargrid, .prefs, .upcgrid{grid-template-columns:1fr}
+  .upcgrid{gap:20px}
+}
+@media(max-width:345px){
+  .locbtn{max-width:78px; padding:5px 7px; font-size:11px}
+  .langbar button{padding:5px 4px; font-size:10px}
+  .iconbtn{width:30px; height:30px}
+}
+@media(max-width:390px){
+  .tb-in{padding:8px 10px; gap:8px}
+  .tb-right{gap:6px}
+  .locbtn{max-width:92px; padding:6px 8px; font-size:11.5px; gap:5px}
+  .langbar{padding:2px}
+  .langbar button{padding:5px 5px; font-size:10.5px}
+  .iconbtn{width:32px; height:32px}
+  .nav a{padding:6px 9px; font-size:13px}
+  .wrap{padding:0 14px}
+}
 @media(max-width:1080px){
   .tb-in{flex-wrap:wrap; padding:9px 16px; gap:10px}
   .brand > span > span{display:none}
@@ -124,9 +185,10 @@ section{padding:64px 0; scroll-margin-top:88px}
   padding:7px 13px; border-radius:999px; margin-bottom:22px}
 .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--saffron)}
 .hero h1{font-size:clamp(2.35rem,5.2vw,4rem); font-weight:700}
-.hero h1 em{font-style:normal; color:var(--saffron); position:relative; white-space:nowrap}
-.hero h1 em::after{content:""; position:absolute; left:0; right:0; bottom:.06em; height:.12em;
-  background:color-mix(in srgb, var(--saffron) 30%, transparent); border-radius:999px}
+.hero h1 em{font-style:normal; color:var(--saffron);
+  background-image:linear-gradient(color-mix(in srgb, var(--saffron) 30%, transparent), color-mix(in srgb, var(--saffron) 30%, transparent));
+  background-repeat:no-repeat; background-size:100% .12em; background-position:0 92%;
+  -webkit-box-decoration-break:clone; box-decoration-break:clone; padding-bottom:.05em}
 .hero .lead{font-size:1.12rem; color:var(--ink-soft); max-width:46ch; margin-top:20px}
 .hero-cta{display:flex; gap:11px; margin-top:30px; flex-wrap:wrap}
 .btn{border:0; cursor:pointer; font-family:var(--body); font-size:14.5px; font-weight:600; padding:13px 21px;
@@ -355,6 +417,12 @@ footer a{color:var(--saffron-d); font-weight:600}
       <a href="#mine" data-i18n="nav_mine">My calendar</a>
     </nav>
     <div class="tb-right">
+      <div class="locwrap">
+        <button class="locbtn" id="locBtn" aria-haspopup="true" aria-expanded="false" title="Location">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <span id="locLabel">New Delhi</span>
+        </button>
+      </div>
       <div class="langbar" id="langbar" role="group" aria-label="Language">
         <button data-lang="en" class="on">EN</button>
         <button data-lang="hi">हिंदी</button>
@@ -411,7 +479,6 @@ footer a{color:var(--saffron-d); font-weight:600}
       </div>
       <div style="text-align:right">
         <div class="loc" id="todayLoc">New Delhi, India</div>
-        <button class="chipbtn" id="geoBtn" style="margin-top:9px" data-i18n="use_loc">Use my location</button>
       </div>
     </div>
     <div class="shead reveal" style="margin-top:36px">
@@ -566,6 +633,23 @@ footer a{color:var(--saffron-d); font-weight:600}
   </div>
 </footer>
 
+<div class="locpanel" id="locPanel" role="dialog" aria-label="Location">
+    <div class="lp-head" data-i18n="loc_title">Location</div>
+    <input type="text" id="locSearch" data-i18n-ph="loc_search" placeholder="Search a city…" autocomplete="off">
+    <button class="lpgps" id="locGps" type="button">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8"/></svg>
+      <span data-i18n="use_loc">Use my location</span>
+    </button>
+    <div class="loclist" id="locList"></div>
+    <div class="lpdiv" data-i18n="loc_manual">Or enter coordinates</div>
+    <div class="lpcoords">
+      <input type="text" id="locLat" inputmode="decimal" placeholder="Latitude" aria-label="Latitude">
+      <input type="text" id="locLng" inputmode="decimal" placeholder="Longitude" aria-label="Longitude">
+    </div>
+    <button class="lpapply" id="locApply" type="button" data-i18n="loc_apply">Set location</button>
+    <div class="lperr" id="locErr" data-i18n="loc_invalid">Enter a valid latitude and longitude</div>
+  </div>
+
 <div class="modal-bg" id="modalBg" role="dialog" aria-modal="true">
   <div class="modal" id="modal"></div>
 </div>
@@ -670,7 +754,17 @@ function sunTimes(date, lat, lng){
   var omega = Math.acos(cosOmega)/RAD;
   return { rise: jdToDate(Jtransit - omega/360), set: jdToDate(Jtransit + omega/360) };
 }
-function fmtTime(d, tz){ if(!d) return "—"; try{ return d.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit", timeZone:tz}); }catch(e){ return d.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"}); } }
+function fmtTime(d, tz, off){
+  if (!d) return "—";
+  try {
+    if (tz) return d.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit", timeZone:tz});
+    if (typeof off === "number" && !isNaN(off)) {
+      var t = new Date(d.getTime() + off*3600000);
+      return pad(t.getUTCHours()) + ":" + pad(t.getUTCMinutes());
+    }
+    return d.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
+  } catch(e){ return d.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"}); }
+}
 
 /* ---------- UI dictionary ---------- */
 var T = {
@@ -683,7 +777,7 @@ en:{ nav_today:"Today", nav_calendar:"Calendar", nav_festivals:"Festivals", nav_
  wheel:"Tithi today",
  today_kicker:"Today at a glance", today_h2:"The five limbs of the Panchang",
  today_p:"The panchang — literally \"five limbs\" — reads the day from the positions of the Sun and Moon. These values are computed live for your chosen place; treat them as a helpful guide and confirm exact muhurtas with your local panchang.",
- use_loc:"Use my location", your_location:"Your location", location_denied:"Location unavailable", trans_note:"Interface and festival text are machine-assisted translations, shown alongside the English for reference.",
+ use_loc:"Use my location", your_location:"Your location", location_denied:"Location unavailable", loc_title:"Location", loc_search:"Search a city…", loc_manual:"Or enter coordinates", loc_apply:"Set location", loc_invalid:"Enter a valid latitude and longitude", trans_note:"Interface and festival text are machine-assisted translations, shown alongside the English for reference.",
  cal_kicker:"The calendar", cal_h2:"Month, year, and festival view",
  cal_p:"Move through time and watch the tithis and festivals flow. Dotted days carry a festival — open any day to read it.",
  prev:"‹ Prev", btn_today:"Today", next:"Next ›", view_year:"Year view", view_month:"Month view",
@@ -732,7 +826,7 @@ hi:{ nav_today:"आज", nav_calendar:"कैलेंडर", nav_festivals:"�
  wheel:"आज की तिथि",
  today_kicker:"आज एक नज़र में", today_h2:"पंचांग के पाँच अंग",
  today_p:"पंचांग — अर्थात \"पाँच अंग\" — सूर्य और चंद्रमा की स्थिति से दिन को पढ़ता है। ये मान आपके चुने स्थान के लिए लाइव गणना किए जाते हैं; इन्हें मार्गदर्शक मानें और सटीक मुहूर्त अपने स्थानीय पंचांग से पुष्ट करें।",
- use_loc:"मेरा स्थान लें", your_location:"आपका स्थान", location_denied:"स्थान उपलब्ध नहीं", trans_note:"इंटरफ़ेस और त्योहार-पाठ मशीन-सहायित अनुवाद हैं, संदर्भ हेतु अंग्रेज़ी के साथ दिखाए गए हैं।",
+ use_loc:"मेरा स्थान लें", your_location:"आपका स्थान", location_denied:"स्थान उपलब्ध नहीं", loc_title:"स्थान", loc_search:"शहर खोजें…", loc_manual:"या निर्देशांक भरें", loc_apply:"स्थान लागू करें", loc_invalid:"मान्य अक्षांश और देशांतर भरें", trans_note:"इंटरफ़ेस और त्योहार-पाठ मशीन-सहायित अनुवाद हैं, संदर्भ हेतु अंग्रेज़ी के साथ दिखाए गए हैं।",
  cal_kicker:"कैलेंडर", cal_h2:"महीना, वर्ष और त्योहार दृश्य",
  cal_p:"समय में आगे बढ़ें और तिथियों व त्योहारों को बहते देखें। बिंदु वाले दिन पर त्योहार होता है — पढ़ने के लिए कोई भी दिन खोलें।",
  prev:"‹ पिछला", btn_today:"आज", next:"अगला ›", view_year:"वार्षिक दृश्य", view_month:"मासिक दृश्य",
@@ -781,7 +875,7 @@ mr:{ nav_today:"आज", nav_calendar:"कॅलेंडर", nav_festivals:"�
  wheel:"आजची तिथी",
  today_kicker:"आज एका दृष्टिक्षेपात", today_h2:"पंचांगाचे पाच अंग",
  today_p:"पंचांग — म्हणजे \"पाच अंग\" — सूर्य व चंद्राच्या स्थितीवरून दिवस वाचते. ही मूल्ये तुमच्या निवडलेल्या ठिकाणासाठी थेट मोजली जातात; ही मार्गदर्शक माना आणि अचूक मुहूर्त स्थानिक पंचांगाकडून तपासा।",
- use_loc:"माझे स्थान घ्या", your_location:"तुमचे स्थान", location_denied:"स्थान उपलब्ध नाही", trans_note:"इंटरफेस व सण-मजकूर हे मशीन-सहाय्यित भाषांतरे आहेत, संदर्भासाठी इंग्रजीसह दाखवली आहेत।",
+ use_loc:"माझे स्थान घ्या", your_location:"तुमचे स्थान", location_denied:"स्थान उपलब्ध नाही", loc_title:"स्थान", loc_search:"शहर शोधा…", loc_manual:"किंवा निर्देशांक भरा", loc_apply:"स्थान लावा", loc_invalid:"वैध अक्षांश व रेखांश भरा", trans_note:"इंटरफेस व सण-मजकूर हे मशीन-सहाय्यित भाषांतरे आहेत, संदर्भासाठी इंग्रजीसह दाखवली आहेत।",
  cal_kicker:"कॅलेंडर", cal_h2:"महिना, वर्ष आणि सण दृश्य",
  cal_p:"काळात पुढे जा आणि तिथी व सण वाहताना पाहा. ठिपके असलेल्या दिवशी सण असतो — वाचण्यासाठी कोणताही दिवस उघडा।",
  prev:"‹ मागील", btn_today:"आज", next:"पुढील ›", view_year:"वार्षिक दृश्य", view_month:"मासिक दृश्य",
@@ -830,7 +924,7 @@ sa:{ nav_today:"अद्य", nav_calendar:"पञ्चाङ्गम्", na
  wheel:"अद्य तिथिः",
  today_kicker:"अद्य एकस्मिन् दृष्टौ", today_h2:"पञ्चाङ्गस्य पञ्च अङ्गानि",
  today_p:"पञ्चाङ्गम् — शब्दशः \"पञ्च अङ्गानि\" — सूर्यचन्द्रयोः स्थित्या दिनं पठति। एतानि मूल्यानि तव निवेशितस्थानाय जीवितं गण्यन्ते; एतानि मार्गदर्शकानि मन्यस्व, सूक्ष्मान् मुहूर्तान् स्वपञ्चाङ्गेन पुष्टीकुरु।",
- use_loc:"मम स्थानं गृहाण", your_location:"तव स्थानम्", location_denied:"स्थानं न लभ्यते", trans_note:"अन्तर्दृश्यं उत्सव-पाठश्च यन्त्रसाहाय्येन अनूदितौ, सन्दर्भाय आङ्ग्लभाषया सह प्रदर्श्येते।",
+ use_loc:"मम स्थानं गृहाण", your_location:"तव स्थानम्", location_denied:"स्थानं न लभ्यते", loc_title:"स्थानम्", loc_search:"नगरं अन्विष…", loc_manual:"अथवा निर्देशाङ्कान् लिख", loc_apply:"स्थानं निश्चिनु", loc_invalid:"मान्यौ अक्षांशदेशान्तरौ लिख", trans_note:"अन्तर्दृश्यं उत्सव-पाठश्च यन्त्रसाहाय्येन अनूदितौ, सन्दर्भाय आङ्ग्लभाषया सह प्रदर्श्येते।",
  cal_kicker:"पञ्चाङ्गम्", cal_h2:"मासः, वर्षं, उत्सव-दृश्यं च",
  cal_p:"काले प्रवह, तिथीः उत्सवांश्च प्रवहतः पश्य। बिन्दुयुक्ते दिने उत्सवः भवति — पठितुं कमपि दिनं उद्घाटय।",
  prev:"‹ पूर्वः", btn_today:"अद्य", next:"अग्रिमः ›", view_year:"वार्षिकं दृश्यम्", view_month:"मासिकं दृश्यम्",
@@ -1050,8 +1144,214 @@ var state = {
   filter:"all", region:"all", search:"",
   favs: (function(){ try{ return JSON.parse(store.get("panchang_favs")||"[]"); }catch(e){ return []; } })(),
   view:"month", calDate:new Date(), year:new Date().getFullYear(),
-  lat:28.6139, lng:77.2090, tz:"Asia/Kolkata", place:null
+  lat:28.6139, lng:77.2090, tz:"Asia/Kolkata", tzOffset:null, place:null, placeKey:null
 };
+
+var CITIES = [
+ ["New Delhi","India",28.6139,77.2090,"Asia/Kolkata"],
+ ["Mumbai","India",19.0760,72.8777,"Asia/Kolkata"],
+ ["Kolkata","India",22.5726,88.3639,"Asia/Kolkata"],
+ ["Chennai","India",13.0827,80.2707,"Asia/Kolkata"],
+ ["Bengaluru","India",12.9716,77.5946,"Asia/Kolkata"],
+ ["Hyderabad","India",17.3850,78.4867,"Asia/Kolkata"],
+ ["Pune","India",18.5204,73.8567,"Asia/Kolkata"],
+ ["Ahmedabad","India",23.0225,72.5714,"Asia/Kolkata"],
+ ["Surat","India",21.1702,72.8311,"Asia/Kolkata"],
+ ["Vadodara","India",22.3072,73.1812,"Asia/Kolkata"],
+ ["Rajkot","India",22.3039,70.8022,"Asia/Kolkata"],
+ ["Dwarka","India",22.2394,68.9678,"Asia/Kolkata"],
+ ["Somnath","India",20.8880,70.4010,"Asia/Kolkata"],
+ ["Jaipur","India",26.9124,75.7873,"Asia/Kolkata"],
+ ["Jodhpur","India",26.2389,73.0243,"Asia/Kolkata"],
+ ["Udaipur","India",24.5854,73.7125,"Asia/Kolkata"],
+ ["Lucknow","India",26.8467,80.9462,"Asia/Kolkata"],
+ ["Kanpur","India",26.4499,80.3319,"Asia/Kolkata"],
+ ["Varanasi","India",25.3176,82.9739,"Asia/Kolkata"],
+ ["Prayagraj","India",25.4358,81.8463,"Asia/Kolkata"],
+ ["Ayodhya","India",26.7996,82.2044,"Asia/Kolkata"],
+ ["Mathura","India",27.4924,77.6737,"Asia/Kolkata"],
+ ["Vrindavan","India",27.5820,77.7064,"Asia/Kolkata"],
+ ["Haridwar","India",29.9457,78.1642,"Asia/Kolkata"],
+ ["Rishikesh","India",30.0869,78.2676,"Asia/Kolkata"],
+ ["Dehradun","India",30.3165,78.0322,"Asia/Kolkata"],
+ ["Amritsar","India",31.6340,74.8723,"Asia/Kolkata"],
+ ["Chandigarh","India",30.7333,76.7794,"Asia/Kolkata"],
+ ["Ludhiana","India",30.9010,75.8573,"Asia/Kolkata"],
+ ["Shimla","India",31.1048,77.1734,"Asia/Kolkata"],
+ ["Jammu","India",32.7266,74.8570,"Asia/Kolkata"],
+ ["Srinagar","India",34.0837,74.7973,"Asia/Kolkata"],
+ ["Gurugram","India",28.4595,77.0266,"Asia/Kolkata"],
+ ["Noida","India",28.5355,77.3910,"Asia/Kolkata"],
+ ["Ghaziabad","India",28.6692,77.4538,"Asia/Kolkata"],
+ ["Patna","India",25.5941,85.1376,"Asia/Kolkata"],
+ ["Gaya","India",24.7955,84.9994,"Asia/Kolkata"],
+ ["Ranchi","India",23.3441,85.3096,"Asia/Kolkata"],
+ ["Bhubaneswar","India",20.2961,85.8245,"Asia/Kolkata"],
+ ["Puri","India",19.8135,85.8312,"Asia/Kolkata"],
+ ["Guwahati","India",26.1445,91.7362,"Asia/Kolkata"],
+ ["Shillong","India",25.5788,91.8933,"Asia/Kolkata"],
+ ["Imphal","India",24.8170,93.9368,"Asia/Kolkata"],
+ ["Kohima","India",25.6751,94.1086,"Asia/Kolkata"],
+ ["Agartala","India",23.8315,91.2868,"Asia/Kolkata"],
+ ["Gangtok","India",27.3389,88.6065,"Asia/Kolkata"],
+ ["Raipur","India",21.2514,81.6296,"Asia/Kolkata"],
+ ["Bhopal","India",23.2599,77.4126,"Asia/Kolkata"],
+ ["Indore","India",22.7196,75.8577,"Asia/Kolkata"],
+ ["Ujjain","India",23.1765,75.7885,"Asia/Kolkata"],
+ ["Nagpur","India",21.1458,79.0882,"Asia/Kolkata"],
+ ["Nashik","India",19.9975,73.7898,"Asia/Kolkata"],
+ ["Aurangabad","India",19.8762,75.3433,"Asia/Kolkata"],
+ ["Panaji","India",15.4909,73.8278,"Asia/Kolkata"],
+ ["Mangaluru","India",12.9141,74.8560,"Asia/Kolkata"],
+ ["Mysuru","India",12.2958,76.6394,"Asia/Kolkata"],
+ ["Coimbatore","India",11.0168,76.9558,"Asia/Kolkata"],
+ ["Madurai","India",9.9252,78.1198,"Asia/Kolkata"],
+ ["Tirupati","India",13.6288,79.4192,"Asia/Kolkata"],
+ ["Kochi","India",9.9312,76.2673,"Asia/Kolkata"],
+ ["Thiruvananthapuram","India",8.5241,76.9366,"Asia/Kolkata"],
+ ["Kanyakumari","India",8.0883,77.5385,"Asia/Kolkata"],
+ ["Rameswaram","India",9.2876,79.3129,"Asia/Kolkata"],
+ ["Kathmandu","Nepal",27.7172,85.3240,"Asia/Kathmandu"],
+ ["Dubai","UAE",25.2048,55.2708,"Asia/Dubai"],
+ ["London","UK",51.5074,-0.1278,"Europe/London"],
+ ["New York","USA",40.7128,-74.0060,"America/New_York"],
+ ["Toronto","Canada",43.6532,-79.3832,"America/Toronto"],
+ ["San Francisco","USA",37.7749,-122.4194,"America/Los_Angeles"],
+ ["Singapore","Singapore",1.3521,103.8198,"Asia/Singapore"],
+ ["Sydney","Australia",-33.8688,151.2093,"Australia/Sydney"],
+ ["Port Louis","Mauritius",-20.1609,57.5012,"Indian/Mauritius"]
+];
+
+function loadLocPrefs(){
+  try {
+    var raw = store.get("panchang_loc");
+    if (!raw) return;
+    var o = JSON.parse(raw);
+    if (o && typeof o.lat === "number" && typeof o.lng === "number"){
+      state.lat = o.lat; state.lng = o.lng;
+      state.tz = o.tz || null;
+      state.tzOffset = (typeof o.off === "number") ? o.off : null;
+      state.place = o.place || null;
+      state.placeKey = o.key || null;
+    }
+  } catch(e){}
+}
+function saveLocPrefs(){
+  try { store.set("panchang_loc", JSON.stringify({ lat:state.lat, lng:state.lng, tz:state.tz, off:state.tzOffset, place:state.place, key:state.placeKey })); } catch(e){}
+}
+function locName(){
+  if (state.place) return state.place;
+  if (state.placeKey) return t(state.placeKey);
+  return "New Delhi, India";
+}
+function locShort(){
+  if (state.place){
+    var pl = String(state.place);
+    return /[A-Za-z]/.test(pl) ? pl.split(",")[0] : pl;
+  }
+  if (state.placeKey) return t(state.placeKey);
+  return "New Delhi";
+}
+function updateLocLabel(){
+  var el = document.getElementById("locLabel");
+  if (el) el.textContent = locShort();
+}
+function applyLocation(lat, lng, tz, name, key){
+  state.lat = lat; state.lng = lng;
+  state.tz = tz || null;
+  state.tzOffset = tz ? null : Math.round(lng/15);
+  state.place = name || null;
+  state.placeKey = key || null;
+  saveLocPrefs();
+  renderToday();
+  updateLocLabel();
+}
+function placeFailed(){ applyLocation(state.lat, state.lng, state.tz, null, "location_denied"); }
+function requestGeo(){
+  if (window.AndroidBridge && typeof window.AndroidBridge.getLocation === "function"){
+    try { window.AndroidBridge.getLocation(); return; } catch(e){}
+  }
+  if (!navigator.geolocation){ placeFailed(); return; }
+  navigator.geolocation.getCurrentPosition(function(pos){
+    var tz = null; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || null; } catch(e){}
+    applyLocation(pos.coords.latitude, pos.coords.longitude, tz, null, "your_location");
+  }, placeFailed, { timeout:10000, maximumAge:600000 });
+}
+/* the Android app hands us the location natively */
+window.__nativeLocation = function(lat, lng){
+  var tz = null; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || null; } catch(e){}
+  applyLocation(lat, lng, tz, null, "your_location");
+};
+window.__nativeLocationError = function(){ placeFailed(); };
+
+function initLocation(){
+  var locBtn = document.getElementById("locBtn");
+  var locPanel = document.getElementById("locPanel");
+  var locList = document.getElementById("locList");
+  var locSearch = document.getElementById("locSearch");
+  var locErr = document.getElementById("locErr");
+  if (!locBtn || !locPanel) return;
+
+  function renderList(filter){
+    var q = (filter || "").trim().toLowerCase(), html = "";
+    for (var i = 0; i < CITIES.length; i++){
+      var c = CITIES[i], label = c[0] + ", " + c[1];
+      if (q && label.toLowerCase().indexOf(q) < 0) continue;
+      var sel = (state.place === label) ? " sel" : "";
+      html += "<button type=\"button\" class=\"locitem" + sel + "\" data-lat=\"" + c[2] +
+        "\" data-lng=\"" + c[3] + "\" data-tz=\"" + c[4] + "\" data-name=\"" + label + "\">" +
+        c[0] + "<small>" + c[1] + "</small></button>";
+    }
+    locList.innerHTML = html || "<div style=\"padding:8px 10px;color:var(--muted);font-size:13px\">—</div>";
+  }
+  function positionPanel(){
+    if (window.innerWidth <= 700){
+      locPanel.style.top = ""; locPanel.style.right = ""; locPanel.style.left = "";
+      return;
+    }
+    var r = locBtn.getBoundingClientRect();
+    locPanel.style.top = Math.round(r.bottom + 8) + "px";
+    locPanel.style.right = Math.round(window.innerWidth - r.right) + "px";
+    locPanel.style.left = "auto";
+  }
+  window.addEventListener("resize", function(){ if (locPanel.classList.contains("open")) positionPanel(); });
+  function open(on){
+    if (on) positionPanel();
+    locPanel.classList.toggle("open", on);
+    locBtn.setAttribute("aria-expanded", on ? "true" : "false");
+    if (on){ locSearch.value = ""; renderList(""); locErr.classList.remove("show"); }
+  }
+  locBtn.onclick = function(e){ e.stopPropagation(); open(!locPanel.classList.contains("open")); };
+  locPanel.onclick = function(e){ e.stopPropagation(); };
+  document.addEventListener("click", function(){ if (locPanel.classList.contains("open")) open(false); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape" && locPanel.classList.contains("open")) open(false); });
+  locSearch.oninput = function(){ renderList(locSearch.value); };
+  locList.onclick = function(e){
+    var t = e.target, guard = 0;
+    while (t && t !== locList && guard++ < 6){
+      if (t.className && String(t.className).indexOf("locitem") >= 0) break;
+      t = t.parentNode;
+    }
+    if (!t || t === locList) return;
+    applyLocation(parseFloat(t.getAttribute("data-lat")), parseFloat(t.getAttribute("data-lng")),
+      t.getAttribute("data-tz"), t.getAttribute("data-name"), null);
+    open(false);
+  };
+  document.getElementById("locGps").onclick = function(){ open(false); requestGeo(); };
+  document.getElementById("locApply").onclick = function(){
+    var la = parseFloat(String(document.getElementById("locLat").value || "").replace(",", "."));
+    var ln = parseFloat(String(document.getElementById("locLng").value || "").replace(",", "."));
+    if (isNaN(la) || isNaN(ln) || la < -90 || la > 90 || ln < -180 || ln > 180){
+      locErr.classList.add("show"); return;
+    }
+    locErr.classList.remove("show");
+    applyLocation(la, ln, null, la.toFixed(2) + ", " + ln.toFixed(2), null);
+    open(false);
+  };
+  renderList("");
+  updateLocLabel();
+}
+loadLocPrefs();
 
 /* ---------- helpers ---------- */
 function ymd(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
@@ -1080,11 +1380,12 @@ function renderToday(){
   var vs = now.getFullYear()+57;
   document.getElementById("todayVedic").innerHTML =
     (ind? p.varaDev : t("wd")[p.vara]) + " · <span class=\"dev\">" + t(p.paksha) + " " + tithiShow + "</span> · " + t("masa")[now.getMonth()] + " · " + (LANG==="sa"?"विक्रमसंवत् ":LANG==="hi"?"विक्रम संवत् ":LANG==="mr"?"विक्रम संवत् ":"Vikram Samvat ") + vs;
-  document.getElementById("todayLoc").textContent = state.place ? t(state.place) : "New Delhi, India";
+  document.getElementById("todayLoc").textContent = locName();
+  updateLocLabel();
 
   var st = sunTimes(now, state.lat, state.lng);
-  var rise = st ? fmtTime(st.rise, state.tz) : "—";
-  var set  = st ? fmtTime(st.set, state.tz)  : "—";
+  var rise = st ? fmtTime(st.rise, state.tz, state.tzOffset) : "—";
+  var set  = st ? fmtTime(st.set, state.tz, state.tzOffset)  : "—";
   var rituIdx = Math.floor((((now.getMonth()+11)%12))/2);
   var cells = [
     { l:t("lbl_tithi"), v:tithiShow, s:t(p.paksha), dev: ind? "" : p.tithiDev, a:"var(--saffron)" },
@@ -1290,7 +1591,7 @@ function renderUpcoming(){
     }).join("");
   }
   document.getElementById("myUpcoming").innerHTML =
-    "<div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px\">"+
+    "<div class=\"upcgrid\">"+
     "<div><h4 style=\"font-family:var(--head);font-size:1.1rem;margin-bottom:6px\">"+t("upcoming")+"</h4>"+
     (next.length?rows(next):"<p style=\"color:var(--muted)\">"+t("upcoming_empty")+"</p>")+"</div>"+
     "<div><h4 style=\"font-family:var(--head);font-size:1.1rem;margin-bottom:6px\">"+t("saved_h")+"</h4>"+
@@ -1336,24 +1637,7 @@ function initNav(){
     else { state.view="month"; y.style.display="none"; m.style.display=""; e.target.textContent=t("view_year"); renderMonth(); }
   };
   document.getElementById("prefRegion").onchange = renderUpcoming;
-  function setPlace(lat, lng){
-    state.lat = lat; state.lng = lng;
-    try { state.tz = Intl.DateTimeFormat().resolvedOptions().timeZone || state.tz; } catch(e){}
-    state.place = "your_location"; renderToday();
-  }
-  function placeFailed(){ state.place = "location_denied"; renderToday(); }
-  /* the Android app hands us the location natively; the web uses the browser API */
-  window.__nativeLocation = function(lat, lng){ setPlace(lat, lng); };
-  window.__nativeLocationError = function(){ placeFailed(); };
-  document.getElementById("geoBtn").onclick = function(){
-    if (window.AndroidBridge && typeof window.AndroidBridge.getLocation === "function"){
-      try { window.AndroidBridge.getLocation(); return; } catch(e){}
-    }
-    if (!navigator.geolocation){ placeFailed(); return; }
-    navigator.geolocation.getCurrentPosition(function(pos){
-      setPlace(pos.coords.latitude, pos.coords.longitude);
-    }, placeFailed, { timeout:10000, maximumAge:600000 });
-  };
+  initLocation();
   document.getElementById("modalBg").onclick = function(e){ if(e.target.id==="modalBg") closeModal(); };
   document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeModal(); });
   document.querySelectorAll("#langbar button").forEach(function(b){ b.onclick=function(){ setLang(b.getAttribute("data-lang")); }; });
